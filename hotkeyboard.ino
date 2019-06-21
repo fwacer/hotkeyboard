@@ -62,6 +62,8 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 5:
       Serial.println("G7");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press(KEY_F4);
       break;
       case 6:
       Serial.println("G6");
@@ -78,6 +80,8 @@ void printKeyPressed(int input_registered, int current_output){
     switch(current_output){
       case 1:
       Serial.println("A2");
+      Keyboard.press(KEY_LEFT_CTRL);
+      Keyboard.press('f');
       break;
       case 2:
       Serial.println("A3");
@@ -179,16 +183,13 @@ void printKeyPressed(int input_registered, int current_output){
       Serial.println("E2");
       Keyboard.press(KEY_LEFT_ALT);
       delay(100);
-      Keyboard.press('1');
-      /*Keyboard.print("2");
-      delay(100);
       Keyboard.print("2");
       delay(100);
+      Keyboard.print("3");
+      delay(100);
       Keyboard.print("4");
-      delay(100);*/
-      
-      delay(1000);
-      Keyboard.release('1');
+      Keyboard.releaseAll();
+
       
       break;
       case 5:
