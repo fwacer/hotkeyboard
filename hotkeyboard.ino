@@ -125,19 +125,19 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 5:
       Serial.println("D8");
-      Keyboard.press('.');
+      Keyboard.print('.');
       break;
       case 6:
       Serial.println("D7");
-      Keyboard.press('3');
+      Keyboard.print('3');
       break;
       case 7:
       Serial.println("D6");
-      Keyboard.press('6');
+      Keyboard.print('6');
       break;
       case 8:
       Serial.println("D5");
-      Keyboard.press('9');
+      Keyboard.print('9');
       break;
       case 10:
       Serial.println("D2");
@@ -151,19 +151,19 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 5:
       Serial.println("C8");
-      Keyboard.press('00');
+      Keyboard.print('00');
       break;
       case 6:
       Serial.println("C7");
-      Keyboard.press('2');
+      Keyboard.print('2');
       break;
       case 7:
       Serial.println("C6");
-      Keyboard.press('5');
+      Keyboard.print('5');
       break;
       case 8:
       Serial.println("C5");
-      Keyboard.press('8');
+      Keyboard.print('8');
       break;
       case 9:
       Serial.println("G3");
@@ -175,24 +175,37 @@ void printKeyPressed(int input_registered, int current_output){
       case 1:
       Serial.println("F2");
       break;
-      case 2:
+      case 2: // Alpha
       Serial.println("E2");
+      Keyboard.press(KEY_LEFT_ALT);
+      delay(100);
+      Keyboard.press('1');
+      /*Keyboard.print("2");
+      delay(100);
+      Keyboard.print("2");
+      delay(100);
+      Keyboard.print("4");
+      delay(100);*/
+      
+      delay(1000);
+      Keyboard.release('1');
+      
       break;
       case 5:
       Serial.println("B8");
-      Keyboard.press('0');
+      Keyboard.print('0');
       break;
       case 6:
       Serial.println("B7");
-      Keyboard.press('1');
+      Keyboard.print('1');
       break;
       case 7:
       Serial.println("B6");
-      Keyboard.press('4');
+      Keyboard.print('4');
       break;
       case 8:
       Serial.println("B5");
-      Keyboard.press('7');
+      Keyboard.print('7');
       break;
       case 10:
       Serial.println("B3");
@@ -201,12 +214,12 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 11:
     switch(current_output){
-      case 3:
+      case 3: // Open new tab in internet browser
       Serial.println("B1");
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press('t');
       break;
-      case 4:
+      case 4: // Open Windows Explorer
       Serial.println("A1");
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('e');
