@@ -57,34 +57,56 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 4:
     switch(current_output){
-      case 2:
+      case 2: // Open Microsoft Work
       Serial.println("G2");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("winword.exe");
       break;
-      case 5:
+      case 5: // Close tab
       Serial.println("G7");
-      Keyboard.press(KEY_LEFT_ALT);
-      Keyboard.press(KEY_F4);
+      Keyboard.press(KEY_LEFT_CTRL);
+      Keyboard.press('w');
       break;
-      case 6:
+      case 6: // Open Steam
       Serial.println("G6");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("steam://open/games");
       break;
-      case 7:
+      case 7: // Open my website
       Serial.println("G5");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("https://www.brycedombrowski.com/");
       break;
-      case 8:
+      case 8: // Open chrome
       Serial.println("G4");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("chrome.exe");
       break;
     }
     break;
     case 5:
     switch(current_output){
-      case 1:
+      case 1: // Find
       Serial.println("A2");
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press('f');
       break;
-      case 2:
+      case 2: // Open Explorer
       Serial.println("A3");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('e');
       break;
       case 5:
       Serial.println("C3");
@@ -92,14 +114,22 @@ void printKeyPressed(int input_registered, int current_output){
       case 6:
       Serial.println("A8");
       break;
-      case 7:
+      case 7: // Begin recording with Windows game bar
       Serial.println("A7");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press('r');
       break;
-      case 8:
+      case 8: // Record the last 30 seconds with Windows game bar
       Serial.println("A6");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press('g');
       break;
-      case 9:
+      case 9: // Open settings
       Serial.println("A4");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('i');
       break;
       case 10:
       Serial.println("A5");
@@ -124,8 +154,13 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 8:
     switch(current_output){
-      case 2:
+      case 2: // Open Notepad++
       Serial.println("C2");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("notepad++.exe");      
       break;
       case 5:
       Serial.println("D8");
@@ -171,6 +206,11 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 9:
       Serial.println("G3");
+      Keyboard.press(KEY_LEFT_GUI);
+      Keyboard.press('r');
+      delay(100);
+      Keyboard.releaseAll();
+      Keyboard.println("excel.exe");
       break;
     }
     break;
@@ -183,11 +223,11 @@ void printKeyPressed(int input_registered, int current_output){
       Serial.println("E2");
       Keyboard.press(KEY_LEFT_ALT);
       delay(100);
-      Keyboard.print("2");
+      Keyboard.write('2');
       delay(100);
-      Keyboard.print("3");
+      Keyboard.write('3');
       delay(100);
-      Keyboard.print("4");
+      Keyboard.write('4');
       Keyboard.releaseAll();
 
       
@@ -220,10 +260,11 @@ void printKeyPressed(int input_registered, int current_output){
       Keyboard.press(KEY_LEFT_CTRL);
       Keyboard.press('t');
       break;
-      case 4: // Open Windows Explorer
+      case 4:
       Serial.println("A1");
       Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('e');
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.press('d');
       break;
     }
     break;
