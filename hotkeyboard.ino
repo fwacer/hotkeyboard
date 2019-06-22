@@ -29,35 +29,67 @@ void printKeyPressed(int input_registered, int current_output){
   switch(input_registered){
     case 0:
     switch(current_output){
-      case 1:
+      case 1: // Greek letter Phi
       Serial.println("F7");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_6);   
       break;
-      case 2:
+      case 2: // Greek letter Tau
       Serial.println("F8");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_4);   
       break;
-      case 5:
+      case 5: // Greek letter Sigma
       Serial.println("E8");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_3);   
       break;
-      case 6:
+      case 6: // Greek letter Theta
       Serial.println("E7");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_5);
+      Keyboard.write(KP_2);   
       break;
-      case 7:
+      case 7: // Greek letter Pi
       Serial.println("E6");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_0);   
       break;
-      case 8:
+      case 8: // Greek letter Mu
       Serial.println("E5");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_5);
+      Keyboard.write(KP_6);   
       break;
-      case 9:
+      case 9: // Greek letter capital Delta
       Serial.println("E3");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_1);
+      Keyboard.write(KP_6);  
       break;
-      case 10:
+      case 10: // Greek letter Gamma
       Serial.println("E4");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_4);
+      Keyboard.write(KP_7);   
       break;
     }
     break;
     case 4:
     switch(current_output){
-      case 2: // Open Microsoft Work
+      case 2: // Open Microsoft Word
       Serial.println("G2");
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('r');
@@ -138,17 +170,33 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 6:
     switch(current_output){
-      case 5:
+      case 5: // Greek letter Rho
       Serial.println("F6");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_1);   
       break;
-      case 6:
+      case 6: // Greek letter Nu
       Serial.println("F5");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_5);
+      Keyboard.write(KP_7);   
       break;
-      case 7:
+      case 7: // Greek letter Lambda
       Serial.println("F4");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_5);
+      Keyboard.write(KP_5);   
       break;
-      case 8:
+      case 8: // Greek letter Delta
       Serial.println("F3");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_4);
+      Keyboard.write(KP_8);   
       break;
     }
     break;
@@ -168,15 +216,15 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 6:
       Serial.println("D7");
-      Keyboard.print('3');
+      Keyboard.print(KP_3);
       break;
       case 7:
       Serial.println("D6");
-      Keyboard.print('6');
+      Keyboard.print(KP_6);
       break;
       case 8:
       Serial.println("D5");
-      Keyboard.print('9');
+      Keyboard.print(KP_9);
       break;
       case 10:
       Serial.println("D2");
@@ -194,15 +242,15 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 6:
       Serial.println("C7");
-      Keyboard.print('2');
+      Keyboard.print(KP_2);
       break;
       case 7:
       Serial.println("C6");
-      Keyboard.print('5');
+      Keyboard.print(KP_5);
       break;
       case 8:
       Serial.println("C5");
-      Keyboard.print('8');
+      Keyboard.print(KP_8);
       break;
       case 9:
       Serial.println("G3");
@@ -216,37 +264,35 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 10:
     switch(current_output){
-      case 1:
+      case 1: // Greek letter Beta
       Serial.println("F2");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_4);
+      Keyboard.write(KP_6);   
       break;
-      case 2: // Alpha
+      case 2: // Greek letter Alpha
       Serial.println("E2");
       Keyboard.press(KEY_LEFT_ALT);
-      delay(100);
-      Keyboard.write('2');
-      delay(100);
-      Keyboard.write('3');
-      delay(100);
-      Keyboard.write('4');
-      Keyboard.releaseAll();
-
-      
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_4);
+      Keyboard.write(KP_5);     
       break;
       case 5:
       Serial.println("B8");
-      Keyboard.print('0');
+      Keyboard.print(KP_0);
       break;
       case 6:
       Serial.println("B7");
-      Keyboard.print('1');
+      Keyboard.print(KP_1);
       break;
       case 7:
       Serial.println("B6");
-      Keyboard.print('4');
+      Keyboard.print(KP_4);
       break;
       case 8:
       Serial.println("B5");
-      Keyboard.print('7');
+      Keyboard.print(KP_7);
       break;
       case 10:
       Serial.println("B3");
@@ -270,7 +316,7 @@ void printKeyPressed(int input_registered, int current_output){
     break;
   }
 
-  delay(100);
+  delay(50);
   Keyboard.releaseAll();
 }
 //const int keyPressed[][11] = {{},};
