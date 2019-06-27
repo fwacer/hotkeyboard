@@ -1,14 +1,37 @@
 #include <Keyboard.h>
+#include <rickroll.h>
+#include <U8glib.h> // lcd display
 
-#define SHIFT_DATA   7 //Shift register 
-#define SHIFT_LATCH  9
-#define SHIFT_CLK    8
+// Define Pins
+#define SHIFT_DATA   6 //Shift register 
+#define SHIFT_CLK    7
+#define SHIFT_LATCH  8
 
-#define OUTPUT_1 5
-#define OUTPUT_2 6
+#define OUTPUT_1 4
+#define OUTPUT_2 5
 
 #define INPUT_FIRST 10
 #define INPUT_LAST A3
+
+#define TONE_PIN 9
+
+// Define aliases for keycodes
+#define KP_1  225
+#define KP_2  226
+#define KP_3  227
+#define KP_4  228
+#define KP_5  229
+#define KP_6  230
+#define KP_7  231
+#define KP_8  232
+#define KP_9  233
+#define KP_0  234
+#define KP_PERIOD 235
+
+#define KEY_NUMLOCK 53+136 //83 + 136
+#define KEY_MUTE 263 // Keyboard Mute
+#define KEY_VOLUMEUP 264 // Keyboard Volume Up
+#define KEY_VOLUMEDOWN 265 // Keyboard Volume Down
 
 void printKeyPressed(int input_registered, int current_output){
   //Serial.println("I"+String(input_registered)+":O"+String(current_output));
@@ -45,7 +68,6 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 5: // Greek letter Sigma
       Serial.println("E8");
-      Keyboard.press(KEY_LEFT_ALT);
       Keyboard.write(KP_9);
       Keyboard.write(KP_6);
       Keyboard.write(KP_3);   
@@ -89,42 +111,53 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 4:
     switch(current_output){
-      case 2: // Open Microsoft Word
+      case 2: // Play a song!
       Serial.println("G2");
+      playRickRoll(TONE_PIN);
+      break;
+      case 5: // Greek letter capital Sigma (sum)
+      Serial.println("G7");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_2);
+      Keyboard.write(KP_2);
+      Keyboard.write(KP_8); 
+      break;
+      case 6: // Greek letter Omega
+      Serial.println("G6");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_9);
+      Keyboard.write(KP_6);
+      Keyboard.write(KP_9); 
+      /*
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('r');
       delay(100);
       Keyboard.releaseAll();
       Keyboard.println("winword.exe");
-      break;
-      case 5: // Close tab
-      Serial.println("G7");
-      Keyboard.press(KEY_LEFT_CTRL);
-      Keyboard.press('w');
-      break;
-      case 6: // Open Steam
-      Serial.println("G6");
+      */
+      /*
+      // Open Steam
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('r');
       delay(100);
       Keyboard.releaseAll();
       Keyboard.println("steam://open/games");
+      */
       break;
-      case 7: // Open my website
-      Serial.println("G5");
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(100);
-      Keyboard.releaseAll();
-      Keyboard.println("https://www.brycedombrowski.com/");
+      case 7: // Greek letter Epsilon
+      Serial.println("G5"); 
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_2);
+      Keyboard.write(KP_3);
+      Keyboard.write(KP_8); 
       break;
-      case 8: // Open chrome
+      case 8: // Greek letter Del (partial differential)
       Serial.println("G4");
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(100);
-      Keyboard.releaseAll();
-      Keyboard.println("chrome.exe");
+      Keyboard.press(KEY_LEFT_ALT);
+      Keyboard.write(KP_8);
+      Keyboard.write(KP_7);
+      Keyboard.write(KP_0); 
+      Keyboard.write(KP_6); 
       break;
     }
     break;
@@ -202,63 +235,67 @@ void printKeyPressed(int input_registered, int current_output){
     break;
     case 8:
     switch(current_output){
-      case 2: // Open Notepad++
+      case 2:
       Serial.println("C2");
+      Keyboard.press(KEY_VOLUMEDOWN);
+      /*
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('r');
-      delay(100);
+      delay(50);
       Keyboard.releaseAll();
-      Keyboard.println("notepad++.exe");      
+      Keyboard.println("notepad++.exe");   */   
       break;
       case 5:
       Serial.println("D8");
-      Keyboard.print('.');
+      Keyboard.press(KP_PERIOD);
       break;
       case 6:
       Serial.println("D7");
-      Keyboard.print(KP_3);
+      Keyboard.press(KP_3);
       break;
       case 7:
       Serial.println("D6");
-      Keyboard.print(KP_6);
+      Keyboard.press(KP_6);
       break;
       case 8:
       Serial.println("D5");
-      Keyboard.print(KP_9);
+      Keyboard.press(KP_9);
       break;
       case 10:
       Serial.println("D2");
+      Keyboard.press(KEY_VOLUMEUP);
       break;
     }
     break;
     case 9:
     switch(current_output){
-      case 2:
+      case 2: // Volume mute
       Serial.println("B2");
+      Keyboard.press(KEY_MUTE);
       break;
       case 5:
       Serial.println("C8");
-      Keyboard.print('00');
+      Keyboard.print("00");
       break;
       case 6:
       Serial.println("C7");
-      Keyboard.print(KP_2);
+      Keyboard.press(KP_2);
       break;
       case 7:
       Serial.println("C6");
-      Keyboard.print(KP_5);
+      Keyboard.press(KP_5);
       break;
       case 8:
       Serial.println("C5");
-      Keyboard.print(KP_8);
+      Keyboard.press(KP_8);
       break;
-      case 9:
-      Serial.println("G3");
+      case 9: // Open my website
+      Serial.println("G3");     
       Keyboard.press(KEY_LEFT_GUI);
       Keyboard.press('r');
       delay(100);
       Keyboard.releaseAll();
-      Keyboard.println("excel.exe");
+      Keyboard.println("https://www.brycedombrowski.com/");
       break;
     }
     break;
@@ -280,19 +317,19 @@ void printKeyPressed(int input_registered, int current_output){
       break;
       case 5:
       Serial.println("B8");
-      Keyboard.print(KP_0);
+      Keyboard.press(KP_0);
       break;
       case 6:
       Serial.println("B7");
-      Keyboard.print(KP_1);
+      Keyboard.press(KP_1);
       break;
       case 7:
       Serial.println("B6");
-      Keyboard.print(KP_4);
+      Keyboard.press(KP_4);
       break;
       case 8:
       Serial.println("B5");
-      Keyboard.print(KP_7);
+      Keyboard.press(KP_7);
       break;
       case 10:
       Serial.println("B3");
@@ -318,8 +355,44 @@ void printKeyPressed(int input_registered, int current_output){
 
   delay(50);
   Keyboard.releaseAll();
+  delay(150);
 }
 //const int keyPressed[][11] = {{},};
+
+void playTune (){
+  int melody[] = {
+    NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+  };
+  
+  // note durations: 4 = quarter note, 8 = eighth note, etc.:
+  int noteDurations[] = {
+    4, 8, 8, 4, 4, 4, 4, 4
+  };
+
+  // iterate over the notes of the melody:
+  for (int thisNote = 0; thisNote < 8; thisNote++) {
+
+    // to calculate the note duration, take one second divided by the note type.
+    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+    int noteDuration = 1000 / noteDurations[thisNote];
+    tone(TONE_PIN, melody[thisNote], noteDuration);
+
+    // to distinguish the notes, set a minimum time between them.
+    // the note's duration + 30% seems to work well:
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    // stop the tone playing:
+    noTone(TONE_PIN);
+  
+  }
+}
+
+void displayLCD(){
+  U8GLIB_SSD1306_128X32 u8g(U8G_I2C_OPT_NONE); // for 0.91" model
+  u8g.setFont(u8g_font_unifont);
+  u8g.setPrintPos(0,10);
+  u8g.print("Hello World!";
+}
 
 void setup() {
   // This code runs once
@@ -329,6 +402,7 @@ void setup() {
   pinMode(SHIFT_CLK, OUTPUT);
   pinMode(OUTPUT_1, OUTPUT);
   pinMode(OUTPUT_2, OUTPUT);
+  pinMode(TONE_PIN, OUTPUT);
   
   int pin;
   for (pin = INPUT_FIRST; pin <= INPUT_LAST; pin++){
@@ -337,6 +411,8 @@ void setup() {
 
   //set shift register to 0
   shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST, 0);
+
+  displayLCD();
 }
 
 void loop() {
