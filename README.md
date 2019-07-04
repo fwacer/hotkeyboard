@@ -16,12 +16,12 @@ A8 B8 C8 D8 E8 F8 --
 
 Master list of keys:
 
-|---|A|B|C|D|E|F|G|
-|1|Superscript (Word)|Piezo tune|--|--|--|--|--|
-|2|Subscript (Word)|Mute|Volume down|Volume up|Alpha|Beta|Change font to Symbol|
-|3|Default formatting (Word)|Start/stop recording||--|Delta(uppercase)|Delta|Degree symbol|
-|4|Increase font size (Word)|--|--|--|Gamma|Lambda|Del(partial derivative)|
-|5|Decrease font size (Word)|7|8|9|Mu|Nu|Epsilon|
-|6|Scientific format (Excel)|4|5|6|Pi|Rho|Omega|
-|7|Currency format (Excel)|1|2|3|Theta|Phi|Sigma(uppercase)|
-|8|Add borders to cell (Excel)|0|00|.|Sigma|Tau|--|
+ | --- | A | B | C | D | E | F | G | 
+ | 1 | Superscript (Word) | Piezo tune | -- | -- | -- | -- | -- | 
+ | 2 | Subscript (Word) | Mute | Volume down | Volume up | Alpha | Beta | Change font to Symbol | 
+ | 3 | Default formatting (Word) | Start/stop recording |  | -- | Delta(uppercase) | Delta | Degree symbol | 
+ | 4 | Increase font size (Word) | -- | -- | -- | Gamma | Lambda | Del(partial derivative) | 
+ | 5 | Decrease font size (Word) | 7 | 8 | 9 | Mu | Nu | Epsilon | 
+ | 6 | Scientific format (Excel) | 4 | 5 | 6 | Pi | Rho | Omega | 
+ | 7 | Currency format (Excel) | 1 | 2 | 3 | Theta | Phi | Sigma(uppercase) | 
+ | 8 | Add borders to cell (Excel) | 0 | 00 | . | Sigma | Tau | -- | 
