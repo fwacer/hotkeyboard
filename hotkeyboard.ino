@@ -93,9 +93,11 @@ void keyPressed(int input_registered, int current_output){
     break;
     case 4:
     switch(current_output){
-      case 2: // Play a song!
-      // Serial.println("G2");
-      BootKeyboard.write(KEY_NUM_LOCK);
+      case 2: // Change the selection to the Symbol font (in Word)
+      // Serial.println("G2");   
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.write('q');
       break;
       case 5: // Greek letter capital Sigma (sum)
       // Serial.println("G7");
@@ -130,41 +132,50 @@ void keyPressed(int input_registered, int current_output){
     break;
     case 5:
     switch(current_output){
-      case 1: // Find
+      case 1: // Apply subscript formatting (in Word)
       // Serial.println("A2");
       BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.press('f');
+      BootKeyboard.write('=');
       break;
-      case 2: // Open Explorer
+      case 2: // Apply the Normal Style (in Word)
       // Serial.println("A3");
-      BootKeyboard.press(KEY_LEFT_GUI);
-      BootKeyboard.press('e');
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.write('n');
       break;
-      case 5:
+      case 5: // Record the last 30 seconds with Windows game bar
       // Serial.println("C3");
-      break;
-      case 6:
-      // Serial.println("A8");
-      break;
-      case 7: // Begin recording with Windows game bar
-      // Serial.println("A7");
-      BootKeyboard.press(KEY_LEFT_GUI);
-      BootKeyboard.press(KEY_LEFT_ALT);
-      BootKeyboard.press('r');
-      break;
-      case 8: // Record the last 30 seconds with Windows game bar
-      // Serial.println("A6");
       BootKeyboard.press(KEY_LEFT_GUI);
       BootKeyboard.press(KEY_LEFT_ALT);
       BootKeyboard.press('g');
       break;
-      case 9: // Open settings
-      // Serial.println("A4");
-      BootKeyboard.press(KEY_LEFT_GUI);
-      BootKeyboard.press('i');
+      case 6: // Add border outline (in Excel)
+      // Serial.println("A8");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.press('7');
       break;
-      case 10:
+      case 7: // Apply currency format
+      // Serial.println("A7");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.press('4');
+      break;
+      case 8: // Apply scientific format
+      // Serial.println("A6");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(KEY_LEFT_SHIFT);
+      BootKeyboard.press('6');
+      break;
+      case 9: // Increase the font size (in Word)
+      // Serial.println("A4");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press(']');
+      break;
+      case 10: // Decrease the font size (in Word)
       // Serial.println("A5");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.press('[');
       break;
     }
     break;
@@ -253,9 +264,13 @@ void keyPressed(int input_registered, int current_output){
       // Serial.println("C5");
       BootKeyboard.press(KEYPAD_8);
       break;
-      case 9: // Play a song!
+      case 9: // Degree symbol
       // Serial.println("G3");     
-      playRickRoll(PIN_TONE); // Why not?
+      BootKeyboard.press(KEY_LEFT_ALT);
+      BootKeyboard.write(KEYPAD_0);
+      BootKeyboard.write(KEYPAD_1);
+      BootKeyboard.write(KEYPAD_7);
+      BootKeyboard.write(KEYPAD_6); 
       break;
     }
     break;
@@ -291,23 +306,31 @@ void keyPressed(int input_registered, int current_output){
       // Serial.println("B5");
       BootKeyboard.press(KEYPAD_7);
       break;
-      case 10:
+      case 10: // Begin recording with Windows game bar
       // Serial.println("B3");
+      BootKeyboard.press(KEY_LEFT_GUI);
+      BootKeyboard.press(KEY_LEFT_ALT);
+      BootKeyboard.press('r');
       break;
     }
     break;
     case 11:
     switch(current_output){
-      case 3: // Open new tab in your internet browser
+      case 3: // Play a song! 
       // Serial.println("B1");
-      BootKeyboard.press(KEY_LEFT_CTRL);
-      BootKeyboard.press('t');
+      playRickRoll(PIN_TONE); // Why not?
       break;
-      case 4:
+      case 4: // Apply superscript formatting (in Word)
       // Serial.println("A1");
+      BootKeyboard.press(KEY_LEFT_CTRL);
+      BootKeyboard.write(KEY_LEFT_SHIFT);
+      BootKeyboard.write('+');
+      
+      /* Open calendar tab
       BootKeyboard.press(KEY_LEFT_GUI);
       BootKeyboard.press(KEY_LEFT_ALT);
       BootKeyboard.press('d');
+      */
       break;
     }
     break;
