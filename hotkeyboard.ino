@@ -1,27 +1,24 @@
-//#include <Keyboard.h>
+// Libraries includes
 #include "HID-Project.h"
 #include <rickroll.h>
-//#include <U8glib.h> // lcd display
 
-// Define Pins
-#define SHIFT_DATA   6 //Shift register 
+// Define I/O pins
+#define OUTPUT_1     4
+#define OUTPUT_2     5
+#define SHIFT_DATA   6
 #define SHIFT_CLK    7
 #define SHIFT_LATCH  8
-
-#define OUTPUT_1 4
-#define OUTPUT_2 5
+#define PIN_TONE     9
 
 #define INPUT_FIRST 10
-#define INPUT_LAST A3
-
-#define PIN_TONE 9
-//#define PIN_NUMLOCK_LED 1
+#define INPUT_LAST  A3
 
 void keyPressed(int input_registered, int current_output){
-  //Serial.println("I"+String(input_registered)+":O"+String(current_output));
+  /* This function takes the output pin that is currently set to HIGH and the input pin that is currently reading HIGH to determine which button has been pressed.
+   * Then, a macro or action is taken based on the button pressed.
+  */
 
-  /*
-   * Keypad layout
+  /* Keypad layout for reference
    * 
    * A1 B1 -- -- -- -- --
    * A2 B2 C2 D2 E2 F2 G2
@@ -52,6 +49,7 @@ void keyPressed(int input_registered, int current_output){
       break;
       case 5: // Greek letter Sigma
       // Serial.println("E8");
+      BootKeyboard.press(KEY_LEFT_ALT);
       BootKeyboard.write(KEYPAD_9);
       BootKeyboard.write(KEYPAD_6);
       BootKeyboard.write(KEYPAD_3);   
@@ -112,21 +110,6 @@ void keyPressed(int input_registered, int current_output){
       BootKeyboard.write(KEYPAD_9);
       BootKeyboard.write(KEYPAD_6);
       BootKeyboard.write(KEYPAD_9); 
-      /*
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(100);
-      Keyboard.releaseAll();
-      Keyboard.println("winword.exe");
-      */
-      /*
-      // Open Steam
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(100);
-      Keyboard.releaseAll();
-      Keyboard.println("steam://open/games");
-      */
       break;
       case 7: // Greek letter Epsilon
       // Serial.println("G5"); 
@@ -222,13 +205,7 @@ void keyPressed(int input_registered, int current_output){
       case 2:
       // Serial.println("C2");
       Consumer.write(MEDIA_VOL_DOWN);
-      return; // Returns to avoid the delay()
-      /*
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(50);
-      Keyboard.releaseAll();
-      Keyboard.println("notepad++.exe");   */   
+      return; // Returns to avoid the delay at the end of the function. This was much easier than writing a whole set of code to handle the repeat delay for media keys.
       break;
       case 5:
       // Serial.println("D8");
@@ -249,7 +226,7 @@ void keyPressed(int input_registered, int current_output){
       case 10:
       // Serial.println("D2");
       Consumer.write(MEDIA_VOL_UP);
-      return; // Returns to avoid the delay()
+      return; // Returns to avoid the delay at the end of the function. This was much easier than writing a whole set of code to handle the repeat delay for media keys.
       break;
     }
     break;
@@ -261,6 +238,7 @@ void keyPressed(int input_registered, int current_output){
       break;
       case 5:
       // Serial.println("C8");
+      // There is no "00" key on Windows, so this is my approximation
       BootKeyboard.print("00");
       break;
       case 6:
@@ -277,16 +255,7 @@ void keyPressed(int input_registered, int current_output){
       break;
       case 9: // Play a song!
       // Serial.println("G3");     
-      playRickRoll(PIN_TONE);
-      
-      /*
-      // Open my website
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press('r');
-      delay(100);
-      Keyboard.releaseAll();
-      Keyboard.println("https://www.brycedombrowski.com/");
-      */
+      playRickRoll(PIN_TONE); // Why not?
       break;
     }
     break;
@@ -329,7 +298,7 @@ void keyPressed(int input_registered, int current_output){
     break;
     case 11:
     switch(current_output){
-      case 3: // Open new tab in internet browser
+      case 3: // Open new tab in your internet browser
       // Serial.println("B1");
       BootKeyboard.press(KEY_LEFT_CTRL);
       BootKeyboard.press('t');
@@ -344,82 +313,50 @@ void keyPressed(int input_registered, int current_output){
     break;
   }
 
-  delay(50);
+  delay(50); // Leave a small amount of time for keys to be pressed
   BootKeyboard.releaseAll();
-  delay(150);
+  delay(150); // Debounce, allows some time between key presses. Future work could include adding a repeat delay.
 }
-//const int keyPressed[][11] = {{},};
-
-/*void playTune (){
-  int melody[] = {
-    NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
-  };
-  
-  // note durations: 4 = quarter note, 8 = eighth note, etc.:
-  int noteDurations[] = {
-    4, 8, 8, 4, 4, 4, 4, 4
-  };
-
-  // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 8; thisNote++) {
-
-    // to calculate the note duration, take one second divided by the note type.
-    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / noteDurations[thisNote];
-    tone(PIN_TONE, melody[thisNote], noteDuration);
-
-    // to distinguish the notes, set a minimum time between them.
-    // the note's duration + 30% seems to work well:
-    int pauseBetweenNotes = noteDuration * 1.30;
-    delay(pauseBetweenNotes);
-    // stop the tone playing:
-    noTone(PIN_TONE);
-  
-  }
-}*/
 
 void forceNumLock(){
-  // Forces NumLock to stay on. The ALT keycodes used by the keypad buttons wouldn't work otherwise.
+  /* Forces NumLock to stay on. The ALT keycodes used by the keypad buttons wouldn't work otherwise.
+  */
   if (!(BootKeyboard.getLeds() & LED_NUM_LOCK))
     BootKeyboard.write(KEY_NUM_LOCK);  
 }
 
-/*
-void displayLCD(){
-  U8GLIB_SSD1306_128X32 u8g(U8G_I2C_OPT_NONE); // for 0.91" model
-  u8g.setFont(u8g_font_unifont);
-  u8g.setPrintPos(0,10);
-  u8g.print("Hello World!";
-}*/
-
 void setup() {
-  // This code runs once
-  
-  BootKeyboard.begin();
-  Consumer.begin();
-  pinMode(SHIFT_DATA, OUTPUT);
-  pinMode(SHIFT_LATCH, OUTPUT);
-  pinMode(SHIFT_CLK, OUTPUT);
-  pinMode(OUTPUT_1, OUTPUT);
-  pinMode(OUTPUT_2, OUTPUT);
-  pinMode(PIN_TONE, OUTPUT);
-  
+  /* This function sets up digital I/O pins and starts the keyboard emulator.
+   */
+  // Set up digital I/O pins
   int pin;
   for (pin = INPUT_FIRST; pin <= INPUT_LAST; pin++){
     pinMode(pin, INPUT);
   }
+  pinMode(OUTPUT_1, OUTPUT);
+  pinMode(OUTPUT_2, OUTPUT);
+  pinMode(SHIFT_DATA, OUTPUT);
+  pinMode(SHIFT_LATCH, OUTPUT);
+  pinMode(SHIFT_CLK, OUTPUT);
+  pinMode(PIN_TONE, OUTPUT);
 
-  //set shift register to 0
+  // Sets the shift register to LOW on all pins, this will later be used for outputting.
   shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST, 0);
 
-  //displayLCD(); 
+  // Set up keyboard emulators from HID-Project
+  BootKeyboard.begin();
+  Consumer.begin();
 }
 
 void loop() {
-  // This code runs repeatedly
+  /* This is the event loop of the board.
+   * Each output line is toggled sequentially, and all input lines are checked each toggle.
+   * We also force num lock to stay on.
+   */
   forceNumLock();
-  
-  
+
+  // Run through each output line, from 1 to 10. 1 and 2 are I/O pins, where 3-10 make use of the shift register.
+  // Note: I could have chained two shift registers together if I needed an two extra I/O pins on the Arduino.
   int output_pin;
   for (output_pin = 1; output_pin <= 10; output_pin++){
     // Only one output should be HIGH at a time.
@@ -446,26 +383,18 @@ void loop() {
       digitalWrite(SHIFT_LATCH, HIGH);
       digitalWrite(SHIFT_LATCH, LOW);
       break;
-    }
-    delay(1);
+    } // switch
+    delay(1); // Probably unnecessary
     
-    
-    // Check input pins
+    // Check input pins for a signal, which would indicate that a button has been pressed.
     int input_pin;
     for (input_pin = INPUT_FIRST; input_pin <= INPUT_LAST; input_pin++){
-      if (input_pin == 17) input_pin += 1;
-      if (digitalRead(input_pin) == HIGH){
-        delay(10);
-        if (digitalRead(input_pin) == HIGH){
-          //Serial.println(input_pin);
-          //Serial.println(String(input_pin-INPUT_FIRST));
-          //Serial.println("INPUT: I"+(input_pin+12-INPUT_FIRST >= 14 ? String(input_pin + 14-INPUT_FIRST) : String(input_pin + 12-INPUT_FIRST)));
-          keyPressed(input_pin-INPUT_FIRST, output_pin);
-        }
-      }
-    }
+      if (input_pin == 17)
+        input_pin += 1;
+      if (digitalRead(input_pin) == HIGH)
+        keyPressed(input_pin-INPUT_FIRST, output_pin);
+    } // for
     
-    delay(1);
     // Turn off any pins that may be left on
     switch(output_pin){
       case 1:
