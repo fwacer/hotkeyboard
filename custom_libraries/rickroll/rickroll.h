@@ -11,6 +11,10 @@
     DISCLAIMER: The song "Never Gonna Give You Up" by Rick Astley
     is not the creative property of the author. This code simply
     plays a Piezo buzzer rendition of the song.
+    
+    https://create.arduino.cc/projecthub/slagestee/rickroll-box-3c2245
+	
+	Modified by Bryce Dombrowski 2019-06-24
 */
 
 void playRickRoll(int piezo);
