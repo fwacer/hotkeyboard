@@ -1,3 +1,15 @@
+/*  hotkeyboard
+
+    AUTHOR: Bryce Dombrowski
+    Copyright 2019 - https://brycedombrowski.com
+    
+    This program takes an old keypad from a cash register and turns it into a hotkey keyboard for any computer that you plug it into.
+    Since this uses an Arduino Pro Micro, we can use it to emulate multiple keys pressed per key.
+    I have it set to use the Windows ALT keycodes to type out greek characters, which is very helpful when writing lab reports. 
+    There's also a few quality of life shortcuts, like the Superscript shortcut for Word.
+    You can read more about this project's build process on my website: brycedombrowski.com
+*/
+
 // Libraries includes
 #include "HID-Project.h"
 #include <rickroll.h>
