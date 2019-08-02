@@ -2,6 +2,8 @@
 
 ![hotkey keyboard from an old cash register](img/cleaned_up_keypad.jpg)
 
+In-depth blog post: https://brycedombrowski.com/2019/08/summer-2019-custom-hotkey-keypad-project/
+
 Master list of keypad functions:
 
  | | A | B | C | D | E | F | G | 
