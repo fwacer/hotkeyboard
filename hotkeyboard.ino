@@ -350,7 +350,7 @@ void keyPressed(int input_registered, int current_output){
 
   delay(50); // Leave a small amount of time for keys to be pressed
   BootKeyboard.releaseAll();
-  delay(150); // Debounce, allows some time between key presses. Future work could include adding a repeat delay.
+  delay(100); // Debounce, allows some time between key presses. Future work could include adding a repeat delay.
 }
 
 void forceNumLock(){
@@ -395,8 +395,8 @@ void loop() {
   int output_pin;
   for (output_pin = 1; output_pin <= 10; output_pin++){
     // Only one output should be HIGH at a time.
-
-    // Direct output pins.
+    
+    // Direct the output pins.
     switch(output_pin){
       case 1:
       digitalWrite(OUTPUT_1, HIGH);
@@ -420,15 +420,19 @@ void loop() {
       break;
     } // switch
     delay(1); // Probably unnecessary
+
+    if (output_pin != 1 && output_pin != 2 && output_pin != 3 && output_pin != 7){
+      // Output pins 1,2,3,7 will never trigger a HIGH signal on an input pin, so we don't bother checking them. This was an oversight and was only realized after project completion.
     
-    // Check input pins for a signal, which would indicate that a button has been pressed.
-    int input_pin;
-    for (input_pin = INPUT_FIRST; input_pin <= INPUT_LAST; input_pin++){
-      if (input_pin == 17)
-        input_pin += 1;
-      if (digitalRead(input_pin) == HIGH)
-        keyPressed(input_pin-INPUT_FIRST, output_pin);
-    } // for
+      // Check input pins for a signal, which would indicate that a button has been pressed.
+      int input_pin;
+      for (input_pin = INPUT_FIRST; input_pin <= INPUT_LAST; input_pin++){
+        if (input_pin == 17)
+          input_pin += 1;
+        if (digitalRead(input_pin) == HIGH)
+          keyPressed(input_pin-INPUT_FIRST, output_pin);
+      } // for
+    }
     
     // Turn off any pins that may be left on
     switch(output_pin){
